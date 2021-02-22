@@ -1,0 +1,16 @@
+#CircleChart_1, .CircleChart_2{ 
+    width: 50%;
+    height:50%;
+}
+
+.video-container{
+    border: 3px dotted brown;
+    padding: 2em;
+}
+.video-img{
+    max-width: 20em;
+    min-width: 20em;
+    max-height: 20em;
+    min-height: 20em;
+    border: 1px solid black;
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="{{ url_for('static', filename='js/CircleChart.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Live Streaming Demonstration</title>
+    
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row d-flex flex-row flex-wrap justify-content-center">
+            <div class="col-6 text-center">
+                <div class="video-container">
+                    <h3>Live Streaming</h3>
+                    <img class="video-img" src="{{ url_for('video_feed') }}" width="100%">
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <div class="video-container">
+                    <h3>Live Streaming</h3>
+                    <img class="video-img" src="{{ url_for('video_feed') }}" width="100%">
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex flex-row flex-wrap justify-content-center mt-5">
+            <div class="col-12 d-flex flex-row flex-wrap justify-content-center align-items-center">
+                <!-- <div class="col-4 text-center">
+                    <canvas id="CircleChart_1"></canvas>
+                    <h4>Anger</h4>
+                </div> -->
+                <div class="col-4 text-center">
+                    <canvas id="CircleChart_2"></canvas>
+                    <h4>Pecentage fight</h4>
+                </div>
+                <div class="col-4 text-center">
+                    <canvas id="CircleChart_3"></canvas>
+                    <h4>ProcessingTime</h4>
+                </div>
+            </div>
+        </div>
+        <!-- <div>
+        <canvas id="histogram"></canvas>
+    </div> -->
+        <script type="application/javascript">
+            {#var chart1 = new CircleChart();#}
+            {#chart1.init("CircleChart_1", content.processing_time);#}
+
+            var apiUrl = 'http://0.0.0.0:5000/api/fight ';
+            fetch(apiUrl).then(response => {
+              return response.json();
+            }).then(data => {
+                var perFight = data.fight;
+                var percentFight = data.precentegeoffight;
+
+                var chart2 = new CircleChart();
+                chart2.setColors('#e5eaf1', '#4c709d');
+
+                chart2.init("CircleChart_2", perFight);
+
+                var chart2 = new CircleChart();
+                chart2.setColors('yellow', 'red');
+                chart2.init("CircleChart_3", percentFight);
+            }).catch(err => {
+              // Do something for an error here
+            });
+
+        </script>
+    </div>
+</body>
+</html>
